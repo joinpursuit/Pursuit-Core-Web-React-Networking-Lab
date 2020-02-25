@@ -5,10 +5,17 @@ import Hand from './Components/Hand'
 // import './App.css';
 
 class App extends React.Component {
+  state = {
+    deckId: ""
+  }
+  handleId = (deckId) => {
+    this.setState({ deckId })
+  }
   render() {
+    const { deckId } = this.state
     return (
       <div className="App">
-        <Menu/>
+        <Menu deckId={deckId} handleId={this.handleId}/>
         <Hand/>
         
       </div>

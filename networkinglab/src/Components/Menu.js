@@ -16,9 +16,12 @@ class Menu extends React.Component {
     }
 
 
+
 render() {
+    const { deckId } = this.state
     return (
         <div>
+            {deckId}
             <button onClick={this.getDeckId}>Get Deck</button>
         </div>
     )
