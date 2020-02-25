@@ -8,8 +8,17 @@ class Menu extends Component{
     }
     handleGenDeck= async(e)=>{
         e.preventDefault()
+        try{
 
-        let res = await axios.get('')
+            let res = await axios.get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
+            debugger
+            this.setState({
+                deck:res.data.deck_id
+            })
+        }catch(error){
+            console.log( error);
+            
+        }
     }
 
     
