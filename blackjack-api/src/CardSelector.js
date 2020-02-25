@@ -5,7 +5,7 @@ class CardSelector extends Component {
 
     render() {
         return (
-            <div>Cards Selector</div>
+            <div></div>
         )
     }
 }
