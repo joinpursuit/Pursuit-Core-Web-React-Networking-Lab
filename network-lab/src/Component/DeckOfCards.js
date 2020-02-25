@@ -3,7 +3,8 @@ import axios from "axios"
 
 class DeckOfCards extends Component{
     state={
-        deck:""
+        deck:"",
+        cards:[]
     }
 
     fetchDeckOfCards = async()=>{
@@ -11,12 +12,22 @@ class DeckOfCards extends Component{
             let res = await axios.get("https://deckofcardsapi.com/api/deck/new/")
             let deck_id = res.data.deck_id
             this.setState({deck: deck_id})
-            debugger
+            
         }catch(err){
             console.log(err)
         }
     }
 
+    drawCards = async(deck)=>{
+        const twoCards = `https://deckofcardsapi.com/api/deck/${deck}/draw/?count=2`
+        try{
+            let res = await axios.get(twoCards)
+            debugger
+            this.setState({cards:res.data.message})
+        }catch(err){
+            console.log(err)
+        }
+    }
 
     render(){
 
