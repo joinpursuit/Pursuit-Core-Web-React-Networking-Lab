@@ -6,7 +6,7 @@ class Cards extends React.Component {
 
     getCardsPics = async () => {
         try{
-            let res = await axios.get(`https://deckofcardsapi.com/api/deck/<<deck_id>>/draw/?count=2`)
+            let res = await axios.get(`https://deckofcardsapi.com/api/deck/new/draw/?count=1`)
             debugger
         } catch(error) {
             console.log(error)

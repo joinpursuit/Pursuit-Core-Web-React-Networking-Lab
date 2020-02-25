@@ -6,7 +6,7 @@ import Header from './Header'
 
 class App extends React.Component {
 
-  state = ""
+  state = {cards: ""}
 
   render() {
 
