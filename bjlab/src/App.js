@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 //import './App.css';
 import Menu from './components/menu'
+import GameScreen from "./components/GameScreen"
 
 class App extends Component {
 
     state =  { deckID: "",
               currentHand: [],
+              gamestart:false
               }
   render(){
 
@@ -13,7 +15,7 @@ class App extends Component {
   return (
     <div className="App">
      <h1>BlackJack</h1>
-      <Menu/>
+      !this.state.gamestart ? <Menu/>:<GameScreen/>
     </div>
   );
   }
