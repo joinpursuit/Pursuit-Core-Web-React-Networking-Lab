@@ -5,7 +5,8 @@ import Cards from './Cards'
 
 export class BlackJack extends Component {
     state = {
-        deckId : ''
+        deckId : '',
+        cards:[]
     }
     // componentDidMount(){
 
@@ -19,28 +20,38 @@ export class BlackJack extends Component {
     }
     drawCards = async (e) =>{
         e.preventDefault()
+        try {
+            let res = await axios.get(`https://deckofcardsapi.com/api/deck/${e.target.elements[0].value}/draw/?count=2`)
+            this.setState({
+                cards:res.data.cards
+            }) 
 
-        let res = await axios.get(`https://deckofcardsapi.com/api/deck/${e.target.elements[0].value}/draw/?count=2`)
-        return res.data.cards.map((card)=>{
-            return <Cards />
+        } catch (error) {
+            alert(error)
+        }
+
+    }
+
+    handleChange =(e)=>{
+        this.setState({
+            deckId:e.target.value
         })
-            // debugger
-            // key={card.image} image={card.image}
-
+        // console.log(e.target.value)
     }
 
     render() {
         console.log(this.state)
-        const {deckId} = this.state
+        const {deckId,cards} = this.state
         return (
             <div>
                 <button onClick={this.generateDeckId}>Generate Deck ID</button>
                 <p>{deckId}</p>
                 {/* <button onClick={Cards.this.getCards}>Draw Card</button> */}
                 <form onSubmit={this.drawCards}>
-                <input type="text" placeholder="Enter Deck Id" defaultValue=""></input>
-                <button>Draw</button>
+                <input type="text" placeholder="Enter Deck Id" value={this.state.deckId} onChange={this.handleChange}/>
+                <button type="submit">Draw</button>
                 </form>
+                <Cards cards={cards}/>
             </div>
         )
     }
