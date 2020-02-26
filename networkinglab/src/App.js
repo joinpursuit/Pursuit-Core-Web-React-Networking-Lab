@@ -10,13 +10,18 @@ class App extends React.Component {
   }
   handleId = (deckId) => {
     this.setState({ deckId })
+    console.log(deckId);
+    debugger
+    
   }
   render() {
     const { deckId } = this.state
     return (
       <div className="App">
         <Menu deckId={deckId} handleId={this.handleId}/>
-        <Hand/>
+        
+    
+        <Hand deckId={deckId}/>
         
       </div>
     );
