@@ -3,29 +3,26 @@ import React, { Component } from 'react'
 export class Cards extends Component {
 
     state={
-        imgLink:["https://www.legitgamblingsites.com/wp-content/uploads/2018/04/blackjack-double-down1-1024x499.jpg","https://www.legitgamblingsites.com/wp-content/uploads/2018/04/blackjack-double-down1-1024x499.jpg"]
+        groupofCard:["https://www.gamblingsites.com/wp-content/uploads/2019/01/Blackjack.png"]
     }
 
     displayCard(){
-        // debugger
-
-        return this.state.imgLink.map((link)=>{
+        return this.state.groupofCard.map((link)=>{
             // debugger
-            return <img key={link++} src={link} alt="BlackJackCode"></img>
+            return <img key={link} src={link} alt="BlackJackCode"></img>
         })
     }
-    componentDidMount(){
-        this.setState({imgLink:this.props.cards})
-        // debugger
-    }
+    // componentDidMount(){
+    //     this.setState({groupofCard:this.props.cards})
+    //     debugger
+    // }
 
-    componentWillUpdate(prevProps){
-        let oldImg = prevProps.imgLink
+    componentDidMount(prevProps){
+        let oldImg = prevProps.groupofCard
         let newImg = this.props.cards
         if(oldImg!==newImg){
-            this.displayCard({imgLink:this.props.cards})
+            this.displayCard(...prevProps.groupofCard,newImg)
         }
-        debugger
     }
     
 

@@ -7,6 +7,7 @@ function App() {
     <div >
       <h1>BlackJack</h1>
       <BlackJack/>
+      
     </div>
   );
 }
