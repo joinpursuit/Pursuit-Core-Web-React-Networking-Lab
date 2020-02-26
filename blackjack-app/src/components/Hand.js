@@ -1,11 +1,16 @@
 import React from "react";
 import Card from "./Card";
 
-const Hand = ({ cards }) => {
-  let displayCards = cards.map(card => {
-    return <Card img={card.image} key={card} />;
+const Hand = ({ cards, deck_id }) => {
+  let displayCards = cards.map((card, i) => {
+    return <Card img={card.image} key={i} />;
   });
-  return <div>{displayCards}</div>;
+  return (
+    <div>
+      <p>Deck id:{deck_id}</p>
+      {displayCards}
+    </div>
+  );
 };
 
 export default Hand;

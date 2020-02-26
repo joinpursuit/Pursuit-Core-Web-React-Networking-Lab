@@ -13,7 +13,9 @@ class App extends Component {
 
   generateDeck = async () => {
     try {
-      let res = await axios.get("https://deckofcardsapi.com/api/deck/new/");
+      let res = await axios.get(
+        "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6"
+      );
       await this.setState({ deck_id: res.data.deck_id });
     } catch (error) {
       await this.setState({ deck_id: "" });
@@ -35,7 +37,7 @@ class App extends Component {
 
   handleSubmit = (e, deck_id) => {
     e.preventDefault();
-    debugger;
+
     this.generateHand(deck_id);
   };
 
@@ -57,7 +59,7 @@ class App extends Component {
           changeHandler={this.changeHandler}
           deck_id={deck_id}
         />
-        <Hand cards={cards} />
+        <Hand cards={cards} deck_id={deck_id} />
       </div>
     );
   }
