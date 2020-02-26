@@ -7,8 +7,12 @@ import Hand from './Components/Hand'
 
 class App extends React.Component {
   state = {
-    deckId: ""
+    deckId: "", button: true
   }
+  toggleButton = () => {
+    this.setState({Button: !this.state.Button})
+  }
+   
   getDeckId = async() => {
     try {
         let res = await axios.get("https://deckofcardsapi.com/api/deck/new/")
@@ -28,11 +32,14 @@ class App extends React.Component {
   
   render() {
     const { deckId } = this.state
+
+    
     return (
       <div className="App">
-      <button onClick={this.getDeckId}>Get Deck</button>
-        {/* <Menu deckId={deckId} handleId={this.handleId}/> */}
+      
         <Hand deckId={deckId}/>
+      <button onClick={this.getDeckId}>Get Deck</button>
+        {/* <Menu  handleId={this.handleId}/> */}
         {deckId}
         
       </div>
