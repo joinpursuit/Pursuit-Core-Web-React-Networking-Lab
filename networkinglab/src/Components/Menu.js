@@ -1,35 +1,33 @@
-import React from 'react'
-import axios from 'axios'
+// import React from 'react'
+// import axios from 'axios'
 
-class Menu extends React.Component {
-    state = {
-        deckId: ""
-    }
-    getDeckId = async() => {
-        try {
-            let res = await axios.get("https://deckofcardsapi.com/api/deck/new/")
-            this.setState({deckId: res.data.deck_id})   
-            // console.log(this.state.deckId);
-            // debugger
+// class Menu extends React.Component {
+//     getDeckId = async() => {
+//         try {
+//             let res = await axios.get("https://deckofcardsapi.com/api/deck/new/")
+//             this.setState({deckId: res.data.deck_id})   
+//             // console.log(this.state.deckId);
+//             // debugger
             
-        } catch (error) {
-            this.setState({deckId: ""})
-            console.log(error); 
-        }
-    }
+//         } catch (error) {
+//             this.setState({deckId: ""})
+//             console.log(error); 
+//         }
+//     }
 
 
 
-render() {
-    const { deckId } = this.state
-    return (
-        <div>
-            {deckId}
-            <button onClick={this.getDeckId}>Get Deck</button>
+// render() {
+//     const { deckId } = this.state
+    
+//     return (
+//         <div>
+//             {deckId}
+//             <button onClick={this.getDeckId}>Get Deck</button>
 
-        </div>
-    )
-}
-}
+//         </div>
+//     )
+// }
+// }
 
-export default Menu;
+// export default Menu;
