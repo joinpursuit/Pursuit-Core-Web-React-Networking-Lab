@@ -9,13 +9,23 @@ class App extends Component {
               currentHand: [],
               gamestart:false
               }
+
+  handleSubmit=(deck)=>{
+    // e.preventDefault()
+    debugger
+    this.setState({
+      deckID:deck,
+      gamestart:true
+    })
+
+  }
   render(){
 
   
   return (
     <div className="App">
      <h1>BlackJack</h1>
-      !this.state.gamestart ? <Menu/>:<GameScreen/>
+      {!this.state.gamestart ? <Menu handleSubmit={this.handleSubmit}/>:<GameScreen deckID={this.state.deckID}/>}
     </div>
   );
   }

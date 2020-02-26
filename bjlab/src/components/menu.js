@@ -34,7 +34,7 @@ class Menu extends Component{
         console.log(this.state)
         return(
             
-            <form action="submit" onSubmit={()=>this.props.handleSubmit()}>
+            <form action="submit" onSubmit={()=>this.props.handleSubmit(this.state.deck)}>
                 <button className="newDeck" onClick={this.handleGenDeck}>Generate new Deck</button>
                 <label>
                 input Existing Deck
