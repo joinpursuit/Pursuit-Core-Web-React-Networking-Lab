@@ -8,7 +8,7 @@ class App extends Component {
   state = {
     deck_id: "",
     cards: [],
-    rendered: ""
+    score: 0
   };
 
   generateDeck = async () => {
@@ -23,6 +23,16 @@ class App extends Component {
     }
   };
 
+  updateScore = () => {
+    let score = 0;
+    this.state.cards.forEach(card => {
+      score += parseInt(card.value);
+    });
+    this.setState({
+      score
+    });
+  };
+
   generateHand = async (deck_id, count) => {
     try {
       let res = await axios.get(
@@ -33,11 +43,10 @@ class App extends Component {
         this.setState(prevState => ({
           cards: [...prevState.cards, ...res.data.cards]
         }));
-
-        debugger;
       } else {
         this.setState({ cards: res.data.cards });
       }
+      this.updateScore();
     } catch (error) {
       this.setState({ cards: [] });
       console.log(error);
@@ -57,7 +66,7 @@ class App extends Component {
   };
 
   render() {
-    const { deck_id, cards } = this.state;
+    const { deck_id, cards, score } = this.state;
     return (
       <div className="App">
         <h1>BlackJack</h1>
@@ -72,6 +81,7 @@ class App extends Component {
           cards={cards}
           deck_id={deck_id}
           generateHand={this.generateHand}
+          score={score}
         />
       </div>
     );
