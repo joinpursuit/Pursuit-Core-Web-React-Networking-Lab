@@ -12,7 +12,7 @@ class Cards extends React.Component {
       let res = await axios.get(
         `https://deckofcardsapi.com/api/deck/new/draw/?count=2`
       );
-      //   debugger;
+      debugger;
       let cards = res.data.cards;
       this.setState({ cards: cards });
     } catch (error) {
