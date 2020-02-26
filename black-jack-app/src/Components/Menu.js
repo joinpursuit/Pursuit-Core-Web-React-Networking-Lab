@@ -3,6 +3,11 @@ import React from 'react';
 class Menu extends React.Component{
 
   render(){
+    if(this.props.deckId && this.props.deckId !=='random'){
+      return(
+      <p>Deck Id: {this.props.deckId}</p>
+      )
+    }
     return(
 
     <div>
@@ -12,7 +17,7 @@ class Menu extends React.Component{
         this.props.handleSubmit(e.target.children[1].value)
       }
      }>
-     <label for='existing'>Input existing Deck: </label>
+     <label htmlFor='existing'>Input existing Deck: </label>
      <input type="text" name="existing"></input>
      <button type='submit'>Draw</button>
      </form>
