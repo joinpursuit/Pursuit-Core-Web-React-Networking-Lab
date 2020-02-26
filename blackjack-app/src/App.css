@@ -1,3 +1,12 @@
+body {
+  background-image: url("https://media.gettyimages.com/photos/an-empty-blackjack-table-picture-id71551084");
+  background-size: cover;
+}
+
 .App {
   text-align: center;
+}
+
+.hitMe {
+  margin-left: 48.5%;
 }

@@ -8,7 +8,7 @@ class App extends Component {
   state = {
     deck_id: "",
     cards: [],
-    rendered: ""
+    score: 0
   };
 
   generateDeck = async () => {
@@ -37,7 +37,6 @@ class App extends Component {
 
   handleSubmit = (e, deck_id) => {
     e.preventDefault();
-
     this.generateHand(deck_id);
   };
 
@@ -45,6 +44,23 @@ class App extends Component {
     this.setState({
       deck_id: e.target.value
     });
+  };
+
+  hitMe = async deck_id => {
+    let res = await axios.get(
+      `https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=1`
+    );
+    try {
+      if (deck_id) {
+        this.setState(prevState => {
+          return {
+            cards: [...prevState.cards, res.data.cards[0]]
+          };
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   render() {
@@ -59,7 +75,7 @@ class App extends Component {
           changeHandler={this.changeHandler}
           deck_id={deck_id}
         />
-        <Hand cards={cards} deck_id={deck_id} />
+        <Hand cards={cards} deck_id={deck_id} hitMe={this.hitMe} />
       </div>
     );
   }
