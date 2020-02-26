@@ -29,7 +29,14 @@ class App extends React.Component {
     try {
       let res = await axios.get(`https://deckofcardsapi.com/api/deck/${deckid}/draw/?count=${num}`)
       let cardArr = res.data.cards
-      this.setState({cards:cardArr, completed:false})
+      debugger
+      if(this.state.cards.length > 0){
+        debugger
+        let newcard = this.state.cards.concat(cardArr)
+        this.setState({cards:newcard})
+      } else {
+        this.setState({cards:cardArr, completed:false})
+      }
     } catch (error) {
       console.log(error)
     }  
