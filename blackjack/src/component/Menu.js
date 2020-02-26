@@ -8,12 +8,17 @@ class Menu extends React.Component {
         <button onClick={this.props.generateDeck}>Generate Deck</button>
         <form
           onSubmit={e => {
+            e.preventDefault();
             this.props.drawCards(e.target.elements[0].value);
           }}
         >
           <label>
             Input Existing Deck
-            <input type="text" onChange={this.props.handleChange}></input>
+            <input
+              type="text"
+              onChange={this.props.handleChange}
+              value={this.props.deck_id}
+            />
           </label>
           <button>Draw</button>
         </form>

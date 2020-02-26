@@ -11,42 +11,75 @@ class App extends React.Component {
     cards: []
   };
 
+  handleChange = e => {
+    this.setState({ deck_id: e.target.value });
+  };
+
   drawCards = async e => {
-    debugger;
-    let deck_id = e;
+    let url = `https://deckofcardsapi.com/api/deck/${e}/draw/?count=2`;
     try {
-      let res = await axios.get(
-        `https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=2`
-      );
+      let res = await axios.get(url);
       debugger;
       this.setState({ cards: res.data.cards });
+      this.setState({ rendered: "Hand" });
     } catch (error) {
+      debugger;
       console.log(error);
     }
   };
   generateDeck = async () => {
     try {
-      let res = await axios.get(`https://deckofcardsapi.com/api/deck/new/`);
+      let res = await axios.get(
+        `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`
+      );
 
       this.setState({ deck_id: res.data.deck_id });
+
       this.drawCards(this.state.deck_id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  drawCard = async e => {
+    let url = `https://deckofcardsapi.com/api/deck/${e}/draw/?count=1`;
+    try {
+      let res = await axios.get(url);
+      debugger;
+      this.setState(prevState => {
+        return {
+          cards: [...prevState.cards, res.data.cards]
+        };
+      });
     } catch (error) {
       console.log(error);
     }
   };
 
   render() {
-    return (
-      <div className="App">
-        <Menu
-          rendered={this.state.rendered}
-          drawCards={this.drawCards}
-          generateDeck={this.generateDeck}
-          deck_id={this.state.deck_id}
-        />
-        <Hand cards={this.state.cards} />
-      </div>
-    );
+    console.log(this.state.deck_id);
+    if (this.state.rendered === "menu") {
+      return (
+        <div className="App">
+          <Menu
+            rendered={this.state.rendered}
+            drawCards={this.drawCards}
+            generateDeck={this.generateDeck}
+            deck_id={this.state.deck_id}
+            handleChange={this.handleChange}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Hand
+            cards={this.state.cards}
+            drawCard={this.drawCard}
+            deck_id={this.state.deck_id}
+          />
+        </div>
+      );
+    }
   }
 }
 
