@@ -23,12 +23,14 @@ class Hand extends React.Component{
           <button onClick={(e)=>this.props.handleHit(e)}>Hit Me</button>
         </div>
       )
+    }else{
+      return(
+        <div>
+          Click Draw
+        </div>
+      )
     }
-    return(
-      <div>
-
-      </div>
-    )
+    
   };
 }
 

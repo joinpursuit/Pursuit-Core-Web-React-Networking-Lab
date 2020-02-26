@@ -43,6 +43,7 @@ class App extends React.Component {
       this.setState (prevState=>({
         deckId: res.data.deck_id
       }))
+
       this.drawCards()
     } else if(!this.state.hand.length){
       let res =await axios.get(`https://deckofcardsapi.com/api/deck/${this.state.deckId}/draw/?count=2`)
