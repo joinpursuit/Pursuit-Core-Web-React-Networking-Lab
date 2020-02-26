@@ -3,30 +3,32 @@ import axios from "axios";
 import Card from "./cardImage";
 
 class Cards extends React.Component {
-  state = { img: "" };
+  state = { cards: [], numberOfCards: 2 };
 
   //maybe comp did mount and getimage fn
 
   getCardsPics = async () => {
     try {
       let res = await axios.get(
-        `https://deckofcardsapi.com/api/deck/new/draw/?count=1`
+        `https://deckofcardsapi.com/api/deck/new/draw/?count=2`
       );
-      // debugger
-      this.setState({ img: res.data.cards[0].images.png });
-      //   console.log(img);
+      //   debugger;
+      let cards = res.data.cards;
+      this.setState({ cards: cards });
     } catch (error) {
       console.log(error);
-      this.setState({ img: "" });
+      this.setState({ cards: [] });
     }
   };
 
   render() {
+    let cardPics = this.state.cards.map((el, index) => {
+      return <Card img={el.image} key={index} />;
+    });
     return (
       <div>
-        <Card img={this.state.img} />
+        {cardPics}
         <button onClick={this.getCardsPics}>Draw A Card</button>
-        {/* <img  */}
       </div>
     );
   }
