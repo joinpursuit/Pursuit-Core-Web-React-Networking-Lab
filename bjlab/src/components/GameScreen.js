@@ -28,7 +28,13 @@ class GameScreen extends Component {
             newScore -=10
             aceCounter -=1
         }
-        if(newScore>21){
+        if(newScore === 21){
+            this.setState({
+                currentScore:newScore,
+                gameOver:true
+            })
+
+        }else if(newScore>21){
             this.setState({
                 bust:true,
                 currentScore:newScore,
