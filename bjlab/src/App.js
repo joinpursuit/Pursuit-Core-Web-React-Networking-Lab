@@ -6,18 +6,20 @@ import GameScreen from "./components/GameScreen"
 class App extends Component {
 
     state =  { deckID: "",
-              currentHand: [],
               gamestart:false
               }
 
-  handleSubmit=(deck)=>{
-    // e.preventDefault()
-    debugger
+  handleSubmit=(deckID)=>{
     this.setState({
-      deckID:deck,
+      deckID,
       gamestart:true
     })
 
+  }
+  handleRestart=()=>{
+    this.setState({
+      gamestart:false
+    })
   }
   render(){
 
@@ -25,7 +27,7 @@ class App extends Component {
   return (
     <div className="App">
      <h1>BlackJack</h1>
-      {!this.state.gamestart ? <Menu handleSubmit={this.handleSubmit}/>:<GameScreen deckID={this.state.deckID}/>}
+      {!this.state.gamestart ? <Menu handleSubmit={this.handleSubmit}/>:<GameScreen deckID={this.state.deckID} handleRestart={this.handleRestart}/>}
     </div>
   );
   }

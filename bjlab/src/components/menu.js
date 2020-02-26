@@ -20,20 +20,16 @@ class Menu extends Component{
         }
     }
 
-    handleChange=(e)=>{
-
+    handleChange = (e) => {
         this.setState({
-
-            deck:e.target.value
-        })
+            deck: e.target.value
+        });
     }
 
     
     render(){
-
         console.log(this.state)
-        return(
-            
+        return(         
             <form action="submit" onSubmit={()=>this.props.handleSubmit(this.state.deck)}>
                 <button className="newDeck" onClick={this.handleGenDeck}>Generate new Deck</button>
                 <label>
