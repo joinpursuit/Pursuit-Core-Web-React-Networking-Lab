@@ -1,17 +1,40 @@
 import React from 'react';
-// import axios from 'axios';
 
 class Menu extends React.Component {
-    state = { deckId: ""}
-    
 
-    render() {
-       return(
-           <div>
-            
-           </div>
-       ) 
-    }
+	constructor(props){
+		super();
+		this.state = {
+			deckId: ''
+		}
+	}
+	newGame = () => {
+		this.props.startGame('new');
+	}
+
+	joinGame = (e) => {
+		this.props.startGame(this.state.deckId);
+	}
+
+	handleChange = (e) => {
+		this.setState({
+			deckId: e.target.value
+		});
+	}
+
+
+
+	render(){
+	return (
+		<div>
+			<button onClick={this.newGame}>Generate Deck</button>
+			<p>Input Existing Deck<input onChange={this.handleChange} type='text' /><button onClick={this.joinGame}>Draw</button></p>
+		</div>);
+	}	
 }
 
-export default Menu;
+
+
+
+export default Menu; 
+
