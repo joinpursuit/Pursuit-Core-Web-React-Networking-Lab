@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 // import App from '../App'
+import Cards from './Cards'
 
 class Hand extends React.Component {
     state = {
@@ -24,9 +25,9 @@ class Hand extends React.Component {
     render() {
         return (
             <div>
-                
+
                 <button onClick= {this.getHand}>Get Hand</button>
-                
+                <Cards/>
             </div>
         )
     }
