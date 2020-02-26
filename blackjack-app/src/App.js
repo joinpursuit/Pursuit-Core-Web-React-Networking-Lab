@@ -15,7 +15,6 @@ class App extends Component {
     try {
       let res = await axios.get("https://deckofcardsapi.com/api/deck/new/");
       await this.setState({ deck_id: res.data.deck_id });
-      debugger;
     } catch (error) {
       await this.setState({ deck_id: "" });
       console.log(error);
@@ -34,9 +33,16 @@ class App extends Component {
     }
   };
 
-  handleSubmit = async (e, deck_id) => {
+  handleSubmit = (e, deck_id) => {
     e.preventDefault();
-    await this.generateHand(deck_id);
+    debugger;
+    this.generateHand(deck_id);
+  };
+
+  changeHandler = e => {
+    this.setState({
+      deck_id: e.target.value
+    });
   };
 
   render() {
@@ -46,7 +52,9 @@ class App extends Component {
         <h1>BlackJack</h1>
         <Menu
           generateDeck={this.generateDeck}
+          generateHand={this.generateHand}
           handleSubmit={this.handleSubmit}
+          changeHandler={this.changeHandler}
           deck_id={deck_id}
         />
         <Hand cards={cards} />

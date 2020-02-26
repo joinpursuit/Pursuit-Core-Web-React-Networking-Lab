@@ -10,11 +10,12 @@ class Menu extends Component {
           onClick={this.props.generateDeck}
           value="Generate deck"
         />
-        <form onSubmit={this.props.handleSubmit}>
+        <form onSubmit={e => this.props.handleSubmit(e)}>
           <h5>Input Existing Deck ID</h5>
           <input
+            onChange={this.props.changeHandler}
             type="text"
-            placeholder={this.props.deck_id}
+            placeholder="enter deck id"
             value={this.props.deck_id}
           ></input>
           <button>Draw</button>
