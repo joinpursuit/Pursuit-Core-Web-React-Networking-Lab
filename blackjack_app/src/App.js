@@ -6,7 +6,7 @@ function App() {
   return (
     <div >
       <h1>BlackJack</h1>
-      <BlackJack/>
+      {/* <BlackJack/> */}
       
     </div>
   );
