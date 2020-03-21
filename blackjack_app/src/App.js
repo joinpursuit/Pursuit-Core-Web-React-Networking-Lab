@@ -1,13 +1,12 @@
 import React from 'react';
-import BlackJack from './Component/BlackJack'
+import Menu from "./Component/Menu"
 
 
 function App() {
   return (
     <div >
-      <h1>BlackJack</h1>
-      {/* <BlackJack/> */}
-      
+      <h2>BlackJack</h2>
+      <Menu/>
     </div>
   );
 }
