@@ -13,8 +13,14 @@ export default class App extends Component {
       cards: []
     }
   }
-   async cardSelect = ()=>{
+   cardSelect = ()=>{
      axios.get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
+     .then(response => {
+       console.log(response.data)
+      //  this.setState({
+      //    cards: response.data
+      //  })
+     })
    }
 
   render() {
