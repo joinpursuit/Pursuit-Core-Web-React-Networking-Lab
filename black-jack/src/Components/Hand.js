@@ -7,7 +7,7 @@ function Hand(props) {
       
         <div className="wrapper">
         <div className ="cards">
-        <h4>Declk Id: {props.deckId}</h4>
+        <h4>Deck Id: {props.deckId}</h4>
          {props.hand.map(card => <img src ={card.image} alt={card.suit + " " + card.value} key={card.code}></img>)}
          </div>
          <div className= "button"> 
