@@ -1,0 +1,12 @@
+body {
+    background-color: green;
+}
+.blackjack {
+    margin-left: 25px;
+}
+#error {
+    color: red;
+}
+#hitme {
+    font-size: 1.5em;
+}
