@@ -1,3 +1,4 @@
+import logo from './logo.svg'
 import React, { Component } from 'react'
 import Menu from './components/Menu'
 import Game from './components/Game'
@@ -64,7 +65,7 @@ export class App extends Component {
       <div className='dot'>
         <div className='border'>
           <div>
-            <h1 contenteditable spellcheck='false'>
+            <h1 contentEditable spellCheck='false'>
               Blackjack
             </h1>
             {this.state.playing ? (
