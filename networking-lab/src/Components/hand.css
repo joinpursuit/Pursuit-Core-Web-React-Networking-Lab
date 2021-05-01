@@ -1,0 +1,14 @@
+.cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+button{
+    width: 100px;
+    height: 35px;
+}
+img{
+    width: 50px;
+    height: 100px;
+}
