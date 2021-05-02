@@ -1,0 +1,13 @@
+.box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    }
+.cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+    
+    
