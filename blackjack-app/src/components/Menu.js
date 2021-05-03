@@ -1,15 +1,39 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-export default function Menu() {
-    return (
-        <div className="Menu">
+export default class Menu extends Component {
+    constructor(){
+        super()
+        this.state = {deckInput : "" }
+    }
 
-        <button>Generate Deck</button>
-        <label>Input Existing Deck</label>
-        <input type="text"></input>
-        <button>Draw</button>
+    handleChange = (e) => {
+        this.setState ({
+            deckInput : e.target.value
+        })
+    }
 
-            
-        </div>
-    )
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.props.drawCards(this.state.deckInput, 2)
+        this.setState ({deckInput : "" })
+    }
+
+    render() {
+
+        const {cardsApi} = this.props
+    
+        return (
+            <div className="Menu">
+    
+            <button onClick={cardsApi}>Generate Deck</button>
+            <form onSubmit={this.handleSubmit}>
+            <label>Input Existing Deck</label>
+            <input type="text" onChange={this.handleChange} value={this.state.deckInput}></input>
+            <button>Draw</button>
+            </form>
+    
+                
+            </div>
+        )
+}
 }
