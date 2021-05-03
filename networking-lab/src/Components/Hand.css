@@ -1,0 +1,12 @@
+.cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid gold;
+  border-radius: 10px;
+  background-color: green;
+}
+
+.button {
+  margin: 10px;
+}
