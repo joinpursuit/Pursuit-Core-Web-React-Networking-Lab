@@ -1,0 +1,24 @@
+#input {
+  margin-top: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 200px;
+}
+
+label {
+  margin-top: 30px;
+  font-style: italic;
+  font-family: cursive;
+  font-weight: 600;
+}
+
+button {
+  color: gold;
+  background-color: black;
+  font-style: italic;
+  font-family: cursive;
+}

@@ -1,0 +1,13 @@
+html {
+  background-color: darkgreen;
+  text-align: center;
+  padding: 50px;
+  border: 10px solid gold;
+  border-radius: 10px;
+}
+
+h1 {
+  font-style: italic;
+  font-family: cursive;
+  font-weight: 600;
+}
