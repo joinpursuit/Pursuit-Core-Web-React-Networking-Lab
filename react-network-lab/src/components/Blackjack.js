@@ -1,9 +1,55 @@
-import React, { Component } from 'react'
+// import React, { Component } from 'react'
+import React, { useState } from "react";
 import Menu from "./Menu"
 import Hand from "./Hand"
 import axios from 'axios'
 import "./Blackjack.css"
 
+export default function Blackjack() {
+    const [ deckId, setDeckId ] = useState("");
+    const [ hand, setHand ] = useState([]);
+    const [ errorMsg, setErrorMsg ] = useState("");
+    
+    const getNewDeck = async () => {
+        try {
+            const { data } = await axios("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6");
+            if(!data.success) return setErrorMsg("It was not successful to get a new deck.");
+            drawCards(data.deck_id, 2);
+        } catch (err) {
+            setErrorMsg(`Oops, something went wrong, please try again later!`);
+        }
+    }
+
+    const drawCards = async (id, cardCount) => {
+        try {
+            const { data } = await axios(`https://deckofcardsapi.com/api/deck/${id}/draw/?count=${cardCount}`);
+            if(!data.success) return setErrorMsg(`It was not successful to draw the card${cardCount > 1 ? "s" : ""}.`);
+            setDeckId(id);
+            setHand([...hand, ...data.cards]);
+            setErrorMsg("");
+        } catch (err) {
+            setErrorMsg(`Deck ${id} is not a valid ID, please try again!`);
+        }
+    }
+
+    return (
+        <div className="blackjack">
+            <h1>Blackjack</h1>
+            {deckId ? <Hand
+                            deckId={deckId}
+                            hand={hand}
+                            drawCards={drawCards}
+                        />
+                    :  <Menu
+                            errorMsg={errorMsg}
+                            getNewDeck={getNewDeck}
+                            drawCards={drawCards}
+                        />
+            }
+        </div>
+    )
+}
+/*
 export default class Blackjack extends Component {
     constructor() {
         super()
@@ -54,3 +100,4 @@ export default class Blackjack extends Component {
         )
     }
 }
+*/
