@@ -7,7 +7,7 @@ import "./App.css";
 
 export default class App extends React.Component {
   state = {
-    deckID: "",
+    deckId: "",
     cards: [],
     showMenu:"",
     showGame:""
@@ -18,7 +18,7 @@ export default class App extends React.Component {
       const deck = await axios.get(
         "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
       );
-      this.setState({ deckID: deck.data.deck_id });
+      this.setState({ deckId: deck.data.deck_id });
       // debugger;
     } catch (error) {
       console.log(error);
@@ -28,7 +28,7 @@ export default class App extends React.Component {
   drawCard = async () => {
     // debugger;
 
-    if (!this.state.deckID) {
+    if (!this.state.deckId) {
       alert("missing deck ID");
     } else {
       try {
@@ -63,17 +63,17 @@ export default class App extends React.Component {
   
 
   handleChange=(e)=>{
-    this.setState({deckID: e.target.value})
+    this.setState({deckId: e.target.value})
   }
 
   render() {
     // debugger
-    const { deckID, cards,showGame,showMenu } = this.state;
+    const { deckId, cards,showGame,showMenu } = this.state;
     return (
       <div className="app">
         <h1>Blackjack</h1>
         <Menu className={showMenu} getDeck={this.getDeck} drawCard={this.drawCard} handleChange={this.handleChange}/>
-        <Game  className={showGame}deckID={deckID} cards={cards} hitMe={this.hitMe}/>
+        <Game  className={showGame}deckID={deckId} cards={cards} hitMe={this.hitMe}/>
        
       </div>
     );
